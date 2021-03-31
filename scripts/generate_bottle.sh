@@ -32,7 +32,7 @@ export SSUBPREFIX
 
 hash=`openssl dgst -sha256 ${NAME}.tar.gz | awk 'NF>1{print $NF}'`
 
-echo "class EosioCdt < Formula
+echo "class VexCdt < Formula
 
    homepage \"${URL}\"
    revision 0
@@ -62,6 +62,6 @@ echo "class EosioCdt < Formula
       raise \"Error, only supporting binary packages at this time\"
    end
 end
-__END__" &> eosio.cdt.rb
+__END__" &> vex.cdt.rb
 
 rm -r ${PROJECT} || exit 1
