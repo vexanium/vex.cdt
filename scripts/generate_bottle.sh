@@ -36,7 +36,7 @@ echo "class EosioCdt < Formula
 
    homepage \"${URL}\"
    revision 0
-   url \"https://github.com/eosio/eosio.cdt/archive/v${VERSION}.tar.gz\"
+   url \"https://github.com/vexanium/vex.cdt/archive/v${VERSION}.tar.gz\"
    version \"${VERSION}\"
    
    option :universal
@@ -55,7 +55,7 @@ echo "class EosioCdt < Formula
    depends_on :arch =>  :intel
   
    bottle do
-      root_url \"https://github.com/eosio/eosio.cdt/releases/download/v${VERSION}\"
+      root_url \"https://github.com/vexanium/vex.cdt/releases/download/v${VERSION}\"
       sha256 \"${hash}\" => :${MAC_VERSION}
    end
    def install
