@@ -37,7 +37,7 @@ else()
    set(VERSION_FULL "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
 endif()
 
-set(CDT_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX}/eosio.cdt)
+set(CDT_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX}/vex.cdt)
 
 include(GNUInstallDirs)
 
