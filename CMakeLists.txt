@@ -37,7 +37,7 @@ else()
    set(VERSION_FULL "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
 endif()
 
-set(CDT_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX}/vex.cdt)
+set(CDT_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX}/eosio.cdt)
 
 include(GNUInstallDirs)
 
@@ -76,11 +76,11 @@ configure_file(${CMAKE_SOURCE_DIR}/scripts/ricardeos/ricardeos.py ${CMAKE_BINARY
 install(FILES ${CMAKE_BINARY_DIR}/scripts/ricardeos.py DESTINATION ${CDT_INSTALL_PREFIX}/scripts)
 
 # section for package construction
-set(VENDOR "vexanium")
-set(PROJECT_NAME "vex.cdt")
-set(DESC "Toolchain and supporting tools for the vexanium platform")
-set(URL "https://github.com/vexanium/vex.cdt")
-set(EMAIL "info@vexanium.com")
+set(VENDOR "block.one")
+set(PROJECT_NAME "eosio.cdt")
+set(DESC "Toolchain and supporting tools for the EOS.IO platform")
+set(URL "https://github.com/eosio/eosio.cdt")
+set(EMAIL "support@block.one")
 configure_file(${CMAKE_SOURCE_DIR}/scripts/generate_package.sh.in ${CMAKE_BINARY_DIR}/packages/generate_package.sh @ONLY)
 configure_file(${CMAKE_SOURCE_DIR}/scripts/generate_deb.sh ${CMAKE_BINARY_DIR}/packages/generate_deb.sh COPYONLY)
 configure_file(${CMAKE_SOURCE_DIR}/scripts/generate_bottle.sh ${CMAKE_BINARY_DIR}/packages/generate_bottle.sh COPYONLY)
