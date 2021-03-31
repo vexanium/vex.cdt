@@ -1,7 +1,6 @@
 #include "stdio_impl.h"
 //include <sys/uio.h>
-
-extern void prints_l(char*, size_t);
+#include <eosiolib/print.h>
 
 size_t __stdio_write(FILE *f, const unsigned char *buf, size_t len)
 {

@@ -14,7 +14,7 @@ else
    MAC_VERSION="high_sierra"
 fi
 
-NAME="${PROJECT}-${VERSION}.${MAC_VERSION}.bottle"
+NAME="${PROJECT}-${VERSION}.${MAC_VERSION}.bottle.tar.gz"
 
 mkdir -p ${PROJECT}/${VERSION}/opt/eosio_cdt/lib/cmake
 
@@ -28,15 +28,15 @@ export SPREFIX
 export SUBPREFIX
 export SSUBPREFIX
 
-. ./generate_tarball.sh ${NAME}
+bash generate_tarball.sh ${NAME}
 
-hash=`openssl dgst -sha256 ${NAME}.tar.gz | awk 'NF>1{print $NF}'`
+hash=`openssl dgst -sha256 ${NAME} | awk 'NF>1{print $NF}'`
 
 echo "class EosioCdt < Formula
 
    homepage \"${URL}\"
    revision 0
-   url \"https://github.com/eosio/eosio.cdt/archive/v${VERSION}.tar.gz\"
+   url \"https://github.com/eosio/vex.cdt/archive/v${VERSION}.tar.gz\"
    version \"${VERSION}\"
    
    option :universal
@@ -55,13 +55,13 @@ echo "class EosioCdt < Formula
    depends_on :arch =>  :intel
   
    bottle do
-      root_url \"https://github.com/eosio/eosio.cdt/releases/download/v${VERSION}\"
+      root_url \"https://github.com/eosio/vex.cdt/releases/download/v${VERSION}\"
       sha256 \"${hash}\" => :${MAC_VERSION}
    end
    def install
       raise \"Error, only supporting binary packages at this time\"
    end
 end
-__END__" &> eosio.cdt.rb
+__END__" &> vex.cdt.rb
 
-rm -r ${PROJECT} || exit 1
+rm -r ${PROJECT}
