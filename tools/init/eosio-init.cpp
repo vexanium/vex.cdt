@@ -51,10 +51,9 @@ struct project {
                            "ACTION @::hi( name nm ) {\n"
                            "   /* fill in action body */\n"
                            "   print_f(\"Name : %\\n\",nm);\n"
-                           "}\n\n"
-                           "EOSIO_DISPATCH( @, (hi) )";
+                           "}";
 
-   const std::string hpp = "#include <eosiolib/eosio.hpp>\n"
+   const std::string hpp = "#include <eosio/eosio.hpp>\n"
                            "using namespace eosio;\n\n"
                            "CONTRACT @ : public contract {\n"
                            "   public:\n"
@@ -68,7 +67,7 @@ struct project {
 
    const std::string cmake = "project(@)\n\n"
                              "set(EOSIO_WASM_OLD_BEHAVIOR \"Off\")\n"
-                             "find_package(vex.cdt)\n\n"
+                             "find_package(eosio.cdt)\n\n"
                              "add_contract( @ @ @.cpp )\n"
                              "target_include_directories( @ PUBLIC ${CMAKE_SOURCE_DIR}/../include )\n"
                              "target_ricardian_directory( @ ${CMAKE_SOURCE_DIR}/../ricardian )";
@@ -76,13 +75,13 @@ struct project {
    const std::string cmake_extern = "include(ExternalProject)\n"
                                     "# if no cdt root is given use default path\n"
                                     "if(EOSIO_CDT_ROOT STREQUAL \"\" OR NOT EOSIO_CDT_ROOT)\n"
-                                    "   find_package(vex.cdt)\n"
+                                    "   find_package(eosio.cdt)\n"
                                     "endif()\n\n"
                                     "ExternalProject_Add(\n"
                                     "   @_project\n"
                                     "   SOURCE_DIR ${CMAKE_SOURCE_DIR}/src\n"
                                     "   BINARY_DIR ${CMAKE_BINARY_DIR}/@\n"
-                                    "   CMAKE_ARGS -DCMAKE_TOOLCHAIN_FILE=${EOSIO_CDT_ROOT}/lib/cmake/vex.cdt/EosioWasmToolchain.cmake\n"
+                                    "   CMAKE_ARGS -DCMAKE_TOOLCHAIN_FILE=${EOSIO_CDT_ROOT}/lib/cmake/eosio.cdt/EosioWasmToolchain.cmake\n"
                                     "   UPDATE_COMMAND \"\"\n"
                                     "   PATCH_COMMAND \"\"\n"
                                     "   TEST_COMMAND \"\"\n"
@@ -206,6 +205,9 @@ int main(int argc, const char **argv) {
 
    cl::ParseCommandLineOptions(argc, argv, std::string("eosio-proj"));
    try {
+      if (!std::regex_match(project_name, std::regex("^[_a-zA-Z][_a-zA-Z0-9]*$"))) {
+         throw std::runtime_error("ERROR: invalid identifier: " + project_name + " (ensure that it is a valid C++ identifier)");
+      }
       llvm::SmallString<128> rp;
       std::string path = output_dir;
       if (path.empty())
