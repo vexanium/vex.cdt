@@ -1,6 +1,13 @@
 # VEX.CDT
 Vexanium Contract Development Toolkit
 
+## macOSX : 1.7.0
+Install:
+
+```brew tap vexanium/vex.cdt```  
+```brew install vex.cdt``` 
+
+
 ## Version : 1.6.1
 To make your life easier we provide you a debian installer in this version.  
 Yep, you don't need to compile and build, just install it.  
